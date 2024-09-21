@@ -2,6 +2,7 @@
 
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface Project {
@@ -9,9 +10,10 @@ interface Project {
   title: string;
   description: string;
   images: string[];
+  links: string[];
 }
 
-function ImageGallery({ images }: { images: string[] }) {
+function ImageGallery({ images,links }: { images: string[],links: string[] }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -26,13 +28,15 @@ function ImageGallery({ images }: { images: string[] }) {
 
   return (
     <div className="relative w-full h-48 bg-gray-200">
-      <Image
-        src={images[currentImageIndex]}
-        alt={`Project image ${currentImageIndex + 1}`}
-        className="w-full h-full object-cover"
-        width={400}
-        height={200}
-      />
+      <Link href={links[currentImageIndex]} target="_blank">
+        <Image
+          src={images[currentImageIndex]}
+          alt={`Project image ${currentImageIndex + 1}`}
+          className="w-full h-full object-cover cursor-pointer"
+          width={400}
+          height={200}
+        />
+      </Link>
       <button
         onClick={prevImage}
         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 transition-opacity"
@@ -58,9 +62,10 @@ export default function Portfolio() {
       title: "CRM Softwares",
       description:
         "Streamline customer interactions and boost sales with powerful CRM tools that manage leads, track communication, and enhance relationships.",
-      images: [
-        "/crm/img1.png",
-        "/crm/img2.png",
+      images: ["/crm/img1.png", "/crm/img2.png"],
+      links: [
+        "https://admin.stunningnyc.com/",
+        "https://admin.stunningnyc.com/",
       ],
     },
     {
@@ -73,6 +78,12 @@ export default function Portfolio() {
         "/e-commerce/img1.png",
         "/e-commerce/img2.png",
         "/e-commerce/img4.png",
+      ],
+      links: [
+        "https://westgarthwines.com/",
+        "https://stunningnyc.com/",
+        "https://westgarthwines.com/",
+        "https://stunningnyc.com/",
       ],
     },
     {
@@ -93,6 +104,19 @@ export default function Portfolio() {
         "/landing-pages/img9.png",
         "/landing-pages/img10.png",
       ],
+      links: [
+        "https://bigshorts-ten.vercel.app/",
+        "https://thekathakaar.com/",
+        "https://kdr-frontend.vercel.app/",
+        "https://kdr-frontend.vercel.app",
+        "https://kdr-frontend.vercel.app",
+        "https://web-scooby.vercel.app/",
+        "https://web-scooby.vercel.app/",
+        "https://web-scooby.vercel.app/",
+        "https://kdr-frontend.vercel.app",
+        "https://bigshorts-ten.vercel.app/",
+        "https://formify-pro-frontend.vercel.app/",
+      ],
     },
     {
       id: 5,
@@ -106,6 +130,14 @@ export default function Portfolio() {
         "/saas/img4.png",
         "/saas/img5.png",
         "/saas/img6.png",
+      ],
+      links: [
+        "https://formify-pro-frontend.vercel.app/",
+        "https://formify-pro-frontend.vercel.app/",
+        "https://formify-pro-frontend.vercel.app/",
+        "https://formify-pro-frontend.vercel.app/",
+        "https://admin.stunningnyc.com/",
+        "https://admin.stunningnyc.com/",
       ],
     },
     {
@@ -121,6 +153,14 @@ export default function Portfolio() {
         "/blogs/img5.png",
         "/blogs/img6.png",
       ],
+      links: [
+        "https://coffee-blog-vandan15.vercel.app/",
+        "https://coffee-blog-vandan15.vercel.app/",
+        "https://coffee-blog-vandan15.vercel.app/",
+        "https://coffee-blog-vandan15.vercel.app/",
+        "https://winecap.com/",
+        "https://winecap.com/",
+      ],
     },
     {
       id: 7,
@@ -132,6 +172,12 @@ export default function Portfolio() {
         "/seo/img1.png",
         "/seo/img2.png",
         "/seo/img4.png",
+      ],
+      links: [
+        "https://web-scooby.vercel.app/",
+        "https://thekathakaar.com/",
+        "https://kdr-frontend.vercel.app/",
+        "https://coffee-blog-vandan15.vercel.app/",
       ],
     },
   ];
@@ -155,7 +201,7 @@ export default function Portfolio() {
                   key={project.id}
                   className="bg-white overflow-hidden shadow rounded-lg"
                 >
-                  <ImageGallery images={project.images} />
+                  <ImageGallery images={project.images} links={project.links}/>
                   <div className="px-4 py-5 sm:p-6">
                     <h3 className="text-lg font-medium text-gray-900 truncate">
                       {project.title}
