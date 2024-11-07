@@ -13,7 +13,13 @@ interface Project {
   links: string[];
 }
 
-function ImageGallery({ images,links }: { images: string[],links: string[] }) {
+function ImageGallery({
+  images,
+  links,
+}: {
+  images: string[];
+  links: string[];
+}) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -182,17 +188,21 @@ export default function Portfolio() {
     },
   ];
 
+
   return (
     <div className="min-h-screen bg-gray-100">
       <main>
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
             <div className="border-4 border-dashed border-gray-200 rounded-lg p-4 mb-8">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                Welcome to Our Project Showcase
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Welcome to My Portfolio
               </h2>
               <p className="text-gray-600">
-                {`We are a dedicated team of developers specializing in delivering innovative and efficient solutions. Below is a selection of our recent projects, each reflecting a unique challenge and showcasing our expertise across various areas of software development.`}
+                {`I am a passionate developer specializing in creating innovative solutions.`}
+              </p>
+              <p className="text-gray-600">
+                {`As an experienced software developer, I’ve had the privilege of working on a wide variety of projects across different domains. I approach every project with meticulous attention to detail, always aiming to deliver practical solutions that drive real business results. Feel free to explore my portfolio through the external links provided below for more insights into my work.`}
               </p>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -201,7 +211,7 @@ export default function Portfolio() {
                   key={project.id}
                   className="bg-white overflow-hidden shadow rounded-lg"
                 >
-                  <ImageGallery images={project.images} links={project.links}/>
+                  <ImageGallery images={project.images} links={project.links} />
                   <div className="px-4 py-5 sm:p-6">
                     <h3 className="text-lg font-medium text-gray-900 truncate">
                       {project.title}
